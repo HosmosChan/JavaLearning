@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- spring版本号 -->
-        <spring.version>4.3.5.RELEASE</spring.version>
+        <spring.version>5.1.1.RELEASE</spring.version>
         <!-- mybatis版本号 -->
         <mybatis.version>3.2.8</mybatis.version>
         <!-- mysql驱动版本号 -->
@@ -136,7 +136,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.22</version>
+            <version>1.2.51</version>
         </dependency>
 
         <!-- 添加日志相关jar包 -->
