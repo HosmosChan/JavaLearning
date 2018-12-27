@@ -1,6 +1,6 @@
 **-----JavaLearning-----**
 =====================================================
-版权所有    :   `Hosmos （chenhauyang）`      Author      :   `Hosmos`        Contact     :   `375938415@qq.com`
+版权所有    :   `Hosmos`      Author      :   `Hosmos`        Contact     :   `375938415@qq.com`
 -----------------------------------------------------
 # Java一些工具使用的学习git
 ## 1.0
