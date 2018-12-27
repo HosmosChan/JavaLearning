@@ -57,3 +57,4 @@ transaction-logs
 *.map
 *.scssc
 Servers/
+caches/
