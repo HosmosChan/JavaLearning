@@ -18,17 +18,17 @@ public interface UserDao {
     @Delete("delete from sys_user_role where userId = #{userId}")
     void deleteUserRole(Long userId);
 
-    void saveUserRoles(@Param("userId") Long userId, @Param("roleIds") List<Long> roleIds);
+    void saveUserRoles(Long userId, List<Long> roleIds);
 
     void update(User user);
 
     @Select("select * from sys_user where id = #{id}")
     User getById(Long id);
 
-    @Update("update sys_user t set t.password = #{password} where t.id = #{id}")
-    void changePassword(Long id, String passwordEncoder);
+    @Update("update sys_user set password = #{password} where id = #{id}")
+    void changePassword(Long id, String password);
 
-    Integer count(@Param("params") Map<String, Object> params);
+    Integer count(Map<String, Object> params);
 
-    List<User> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
+    List<User> list(Map<String, Object> params, Integer offset, Integer limit);
 }

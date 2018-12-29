@@ -20,12 +20,12 @@ public interface DictDao {
     @Insert("insert into sys_dict(type, k, val, createTime, gmtTime) values(#{type}, #{k}, #{val}, now(), now())")
     int save(Dict dict);
 
-    int count(@Param("params") Map<String, Object> params);
+    int count(Map<String, Object> params);
 
-    List<Dict> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
+    List<Dict> list(Map<String, Object> params, Integer offset, Integer limit);
 
     @Select("select * from sys_dict where type = #{type} and k = #{k}")
-    Dict getByTypeAndK(@Param("type") String type, @Param("k") String k);
+    Dict getByTypeAndK(String type, String k);
 
     @Select("select * from sys_dict where type = #{type}")
     List<Dict> listByType(String type);

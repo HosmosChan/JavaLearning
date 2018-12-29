@@ -11,6 +11,8 @@
 </button>
 <div id="headImgDiv">
 </div>
+</body>
+</html>
 <script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../../js/jq.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
@@ -54,7 +56,6 @@
                         var src = domain + "/files" + url;
                         var a = "<a target='_blank' href='" + src + "'><img src='" + src + "'></img></a>";
                         $("#headImgDiv").html(a);
-
                         var img = parent.$(".admin-header-user img");
                         img.attr("src", src);
                     }
@@ -63,5 +64,3 @@
         });
     });
 </script>
-</body>
-</html>

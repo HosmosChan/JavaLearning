@@ -21,21 +21,20 @@ public interface RoleDao {
     @Delete("delete from sys_role_permission where roleId = #{roleId}")
     void deleteRolePermission(Long roleId);
 
-    void saveRolePermission(@Param("roleId") Long roleId, @Param("permissionIds") List<Long> permissionIds);
+    void saveRolePermission(Long roleId, List<Long> permissionIds);
 
     @Delete("delete from sys_user_role where roleId = #{roleId}")
-    void deleteRoleUser(Long id);
+    void deleteRoleUser(Long roleId);
 
     @Delete("delete from sys_role where id = #{id}")
     void delete(Long id);
 
     @Select("select * from sys_role r inner join sys_user_role ru on r.id = ru.roleId where ru.userId = #{userId}")
-    List<Role> listByUserId(Long id);
+    List<Role> listByUserId(Long userId);
 
-    int count(@Param("params") Map<String, Object> params);
+    int count(Map<String, Object> params);
 
-    List<Role> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset,
-                    @Param("limit") Integer limit);
+    List<Role> list(Map<String, Object> params, Integer offset, Integer limit);
 
     @Select("select * from sys_role where id = #{id}")
     Role getById(Long id);

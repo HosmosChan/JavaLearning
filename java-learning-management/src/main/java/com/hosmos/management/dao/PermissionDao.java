@@ -14,7 +14,7 @@ public interface PermissionDao {
     void update(Permission permission);
 
     @Delete("delete from sys_role_permission where permissionId = #{permissionId}")
-    void deleteRolePermission(Long id);
+    void deleteRolePermission(Long permissionId);
 
     @Delete("delete from sys_permission where id = #{id}")
     void delete(Long id);
@@ -22,10 +22,10 @@ public interface PermissionDao {
     @Delete("delete from sys_permission where parentId = #{id}")
     void deleteByParentId(Long id);
 
-    @Select("select * from sys_permission t order by t.sort")
+    @Select("select * from sys_permission order by sort")
     List<Permission> listAll();
 
-    @Select("select * from sys_permission t where t.type = 1 order by t.sort")
+    @Select("select * from sys_permission where type = 1 order by sort")
     List<Permission> listParents();
 
     @Select("select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_user_role ru on ru.roleId = rp.roleId where ru.userId = #{userId} order by p.sort")
@@ -34,6 +34,6 @@ public interface PermissionDao {
     @Select("select p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId where rp.roleId = #{roleId} order by p.sort")
     List<Permission> listByRoleId(Long roleId);
 
-    @Select("select * from sys_permission t where t.id = #{id}")
+    @Select("select * from sys_permission where id = #{id}")
     Permission getById(Long id);
 }

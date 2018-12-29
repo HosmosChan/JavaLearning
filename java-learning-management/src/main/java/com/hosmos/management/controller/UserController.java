@@ -43,6 +43,7 @@ public class UserController {
         }
         return userService.saveUser(userDto);
     }
+
     @LogAnnotation
     @PutMapping
     @ApiOperation(value = "修改用户")
@@ -51,8 +52,9 @@ public class UserController {
         return userService.updateUser(userDto);
     }
 
-    @PutMapping(params = "headImgUrl")
+    @LogAnnotation
     @ApiOperation(value = "修改头像")
+    @PutMapping(params = "headImgUrl")
     public void updateHeadImgUrl(String headImgUrl) {
         User user = UserUtil.getCurrentUser();
         UserDto userDto = new UserDto();
@@ -61,6 +63,7 @@ public class UserController {
         userService.updateUser(userDto);
         log.debug("{}修改了头像", user.getUsername());
     }
+
     @LogAnnotation
     @PutMapping("/{username}")
     @ApiOperation(value = "修改密码")

@@ -9,7 +9,7 @@ import java.util.Map;
 @Mapper
 public interface JobDao {
     @Select("select * from t_job where jobName = #{jobName}")
-    JobModel getByName(String name);
+    JobModel getByName(String jobName);
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("insert into t_job(jobName, description, cron, springBeanName, methodName, isSysJob, status, createTime, gmtTime) values(#{jobName}, #{description}, #{cron}, #{springBeanName}, #{methodName}, #{isSysJob}, 1, now(), now())")
@@ -20,7 +20,7 @@ public interface JobDao {
     @Select("select * from t_job where id = #{id}")
     JobModel getById(Long id);
 
-    int count(@Param("params") Map<String, Object> params);
+    int count(Map<String, Object> params);
 
-    List<JobModel> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
+    List<JobModel> list(Map<String, Object> params, Integer offset, Integer limit);
 }
