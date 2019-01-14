@@ -17,6 +17,8 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 /**
  * springMVC异常处理
+ *
+ * @author chenhuayang
  */
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {

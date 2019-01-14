@@ -2,6 +2,8 @@ package com.hosmos.management.constants;
 
 /**
  * 用户相关常量
+ *
+ * @author chenhuayang
  */
 public interface UserConstants {
     /**

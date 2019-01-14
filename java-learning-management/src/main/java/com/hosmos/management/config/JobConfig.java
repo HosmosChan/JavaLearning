@@ -9,6 +9,11 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import javax.sql.DataSource;
 import java.io.IOException;
 
+/**
+ * 定时任务配置
+ *
+ * @author chenhuayang
+ */
 @Configuration
 public class JobConfig {
     public static final String KEY = "applicationContextSchedulerContextKey";

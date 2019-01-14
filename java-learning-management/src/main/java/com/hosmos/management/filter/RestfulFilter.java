@@ -22,12 +22,15 @@ import java.io.IOException;
  * Restful方式登陆<br>
  * 在参数中或者header里加参数login-token作为登陆凭证<br>
  * 参数值是登陆成功后的返回值中获取
+ *
+ * @author chenhuayang
  */
 public class RestfulFilter extends UserFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         String loginToken = getToken(request);
-        if (StringUtils.isBlank(loginToken)) {// 非Restful方式
+        // 非Restful方式
+        if (StringUtils.isBlank(loginToken)) {
             return super.isAccessAllowed(request, response, mappedValue);
         }
         TokenManager tokenManager = SpringUtil.getBean(TokenManager.class);

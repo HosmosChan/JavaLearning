@@ -3,8 +3,7 @@ package com.hosmos.management.controller;
 import com.hosmos.management.service.SysLogService;
 import com.hosmos.management.model.SysLogs;
 import com.hosmos.learning.common.utils.table.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +14,8 @@ import java.util.List;
 
 /**
  * 日志相关接口
+ *
+ * @author chenhuayang
  */
 @Api(tags = "日志")
 @RestController

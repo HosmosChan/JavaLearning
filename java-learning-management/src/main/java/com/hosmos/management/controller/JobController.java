@@ -4,8 +4,7 @@ import com.hosmos.learning.common.utils.table.*;
 import com.hosmos.management.annotation.LogAnnotation;
 import com.hosmos.management.model.JobModel;
 import com.hosmos.management.service.JobService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.quartz.CronExpression;
 import org.quartz.SchedulerException;
@@ -18,6 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.Method;
 import java.util.*;
 
+/**
+ * 定时任务相关接口
+ *
+ * @author chenhuayang
+ */
 @Api(tags = "定时任务")
 @RestController
 @RequestMapping("/jobs")
@@ -115,7 +119,8 @@ public class JobController {
         Method[] methods = clazz.getDeclaredMethods();
         Set<String> names = new HashSet<>();
         Arrays.asList(methods).parallelStream().forEach(m -> {
-            int b = m.getModifiers();// public 1 static 8 final 16
+            // public 1 static 8 final 16
+            int b = m.getModifiers();
             if (b == 1 || b == 9 || b == 17 || b == 25) {
                 Class<?>[] classes = m.getParameterTypes();
                 if (classes.length == 0) {

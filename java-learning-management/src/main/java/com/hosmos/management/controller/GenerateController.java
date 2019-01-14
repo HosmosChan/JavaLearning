@@ -6,8 +6,7 @@ import com.hosmos.management.dto.BeanField;
 import com.hosmos.management.dto.GenerateDetail;
 import com.hosmos.management.dto.GenerateInput;
 import com.hosmos.management.service.GenerateService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +15,8 @@ import java.util.List;
 
 /**
  * 代码生成接口
+ *
+ * @author chenhuayang
  */
 @Api(tags = "代码生成")
 @RestController

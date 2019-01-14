@@ -5,6 +5,11 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * 权限管理Dao层
+ *
+ * @author chenhuayang
+ */
 @Mapper
 public interface PermissionDao {
     @Insert("insert into sys_permission(parentId, name, css, href, type, permission, sort) values(#{parentId}, #{name}, #{css}, #{href}, #{type}, #{permission}, #{sort})")

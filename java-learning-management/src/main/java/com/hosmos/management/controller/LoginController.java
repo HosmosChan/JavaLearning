@@ -5,8 +5,7 @@ import com.hosmos.management.dto.Token;
 import com.hosmos.management.model.User;
 import com.hosmos.management.service.TokenManager;
 import com.hosmos.management.utils.UserUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,35 +17,40 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 登陆相关接口
+ *
+ * @author chenhuayang
  */
 @Api(tags = "登陆")
 @RestController
 @RequestMapping
 public class LoginController {
-	@Autowired
-	private TokenManager tokenManager;
-	@Autowired
-	private ServerProperties serverProperties;
-	@LogAnnotation
-	@ApiOperation(value = "web端登陆")
-	@PostMapping("/sys/login")
-	public void login(String username, String password) {
-		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
-		SecurityUtils.getSubject().login(usernamePasswordToken);
-		// 设置shiro的session过期时间
-		SecurityUtils.getSubject().getSession().setTimeout(serverProperties.getServlet().getSession().getTimeout().toMillis());
-	}
-	@LogAnnotation
-	@ApiOperation(value = "Restful方式登陆,前后端分离时登录接口")
-	@PostMapping("/sys/login/restful")
-	public Token restfulLogin(String username, String password) {
-		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
-		SecurityUtils.getSubject().login(usernamePasswordToken);
-		return tokenManager.saveToken(usernamePasswordToken);
-	}
-	@ApiOperation(value = "当前登录用户")
-	@GetMapping("/sys/login")
-	public User getLoginInfo() {
-		return UserUtil.getCurrentUser();
-	}
+    @Autowired
+    private TokenManager tokenManager;
+    @Autowired
+    private ServerProperties serverProperties;
+
+    @LogAnnotation
+    @ApiOperation(value = "web端登陆")
+    @PostMapping("/sys/login")
+    public void login(String username, String password) {
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
+        SecurityUtils.getSubject().login(usernamePasswordToken);
+        // 设置shiro的session过期时间
+        SecurityUtils.getSubject().getSession().setTimeout(serverProperties.getServlet().getSession().getTimeout().toMillis());
+    }
+
+    @LogAnnotation
+    @ApiOperation(value = "Restful方式登陆,前后端分离时登录接口")
+    @PostMapping("/sys/login/restful")
+    public Token restfulLogin(String username, String password) {
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
+        SecurityUtils.getSubject().login(usernamePasswordToken);
+        return tokenManager.saveToken(usernamePasswordToken);
+    }
+
+    @ApiOperation(value = "当前登录用户")
+    @GetMapping("/sys/login")
+    public User getLoginInfo() {
+        return UserUtil.getCurrentUser();
+    }
 }

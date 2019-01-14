@@ -20,6 +20,8 @@ import java.util.Map;
 
 /**
  * shiro配置
+ *
+ * @author chenhuayang
  */
 @Configuration
 public class ShiroConfig {
@@ -72,7 +74,8 @@ public class ShiroConfig {
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");// 散列算法:这里使用MD5算法;
+        // 散列算法:这里使用MD5算法;
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
         hashedCredentialsMatcher.setHashIterations(UserConstants.HASH_ITERATIONS);
         return hashedCredentialsMatcher;
     }

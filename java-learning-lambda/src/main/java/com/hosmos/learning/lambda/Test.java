@@ -45,8 +45,9 @@ public class Test {
 
     public static String setJson(String... keys) {
         try {
-            if (isEmpty(keys))
+            if (isEmpty(keys)) {
                 return null;
+            }
             JSONObject jsonObj = new JSONObject();
             StringBuilder resultJson = new StringBuilder("{");
             boolean way = true;

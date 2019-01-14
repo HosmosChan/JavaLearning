@@ -108,7 +108,8 @@ public class ExcelUtil {
         style.setAlignment(HorizontalAlignment.CENTER_SELECTION);
         Font font = workbook.createFont();
         int line = 0, maxColumn = 0;
-        if (headers != null && headers.length > 0) {// 设置列头
+        // 设置列头
+        if (headers != null && headers.length > 0) {
             row = sheet.createRow(line++);
             row.setHeightInPoints(23);
             font.setBold(true);
@@ -121,7 +122,8 @@ public class ExcelUtil {
                 cell.setCellStyle(style);
             }
         }
-        if (datas != null && datas.size() > 0) {// 渲染数据
+        // 渲染数据
+        if (datas != null && datas.size() > 0) {
             for (Object[] data : datas) {
                 if (data != null && data.length > 0) {
                     row = sheet.createRow(line++);

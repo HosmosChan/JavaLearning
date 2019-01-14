@@ -17,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * redis实现的Token
+ *
+ * @author chenhuayang
  */
 @Service
 public class RedisTokenManager implements TokenManager {

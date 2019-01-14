@@ -1,7 +1,6 @@
 package com.hosmos.management.controller;
 
 import com.hosmos.management.annotation.LogAnnotation;
-import com.hosmos.management.dao.UserDao;
 import com.hosmos.management.dto.UserDto;
 import com.hosmos.management.model.User;
 import com.hosmos.management.service.UserService;
@@ -9,8 +8,7 @@ import com.hosmos.learning.common.utils.table.PageTableHandler;
 import com.hosmos.learning.common.utils.table.PageTableRequest;
 import com.hosmos.learning.common.utils.table.PageTableResponse;
 import com.hosmos.management.utils.UserUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 用户相关接口
+ * 用户管理相关接口
+ *
+ * @author chenhuayang
  */
-@Api(tags = "用户")
-
+@Api(tags = "用户管理")
 @RestController
 @RequestMapping("/users")
 public class UserController {

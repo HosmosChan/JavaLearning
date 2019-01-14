@@ -17,8 +17,10 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * EhCache实现的Token<br>
+ * EhCache实现的Token
  * 默认采用此实现
+ *
+ * @author chenhuayang
  */
 @Primary
 @Service

@@ -23,6 +23,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * 用户Shiro权限领域配置
+ *
+ * @author chenhuayang
+ */
 public class MyShiroRealm extends AuthorizingRealm {
     private static final Logger log = LoggerFactory.getLogger("adminLogger");
 

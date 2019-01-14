@@ -17,6 +17,11 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Method;
 import java.util.*;
 
+/**
+ * 定时任务实现层
+ *
+ * @author chenhuayang
+ */
 @Service
 public class JobServiceImpl implements JobService {
     private static final Logger log = LoggerFactory.getLogger("adminLogger");

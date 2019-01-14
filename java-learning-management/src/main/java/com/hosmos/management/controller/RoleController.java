@@ -6,8 +6,7 @@ import com.hosmos.management.annotation.LogAnnotation;
 import com.hosmos.management.dto.RoleDto;
 import com.hosmos.management.model.Role;
 import com.hosmos.management.service.RoleService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 角色相关接口
+ * 角色管理相关接口
+ *
+ * @author chenhuayang
  */
-@Api(tags = "角色")
+@Api(tags = "角色管理")
 @RestController
 @RequestMapping("/roles")
 public class RoleController {

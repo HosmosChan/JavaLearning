@@ -17,7 +17,7 @@ public class MD5Utils {
                 // 创建具有指定算法名称的信息摘要
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 // 使用指定的字节数组对摘要进行最后的更新，然后完成摘要计算
-                byte[] results = md.digest(originstr.getBytes());
+                byte[] results = md.digest(originstr.getBytes("utf-8"));
                 for (int i : results) {
                     System.err.print(i + " ");
                 }
@@ -34,12 +34,11 @@ public class MD5Utils {
 
     // 转换字节数组为十六进制字符串
     public static String byteArrayToHexString(byte[] b) {
-        StringBuffer resultsb = new StringBuffer();
-        int i = 0;
-        for (i = 0; i < b.length; i++) {
-            resultsb.append(byteToHexString(b[i]));
+        StringBuilder builder = new StringBuilder();
+        for (byte b1 : b) {
+            builder.append(byteToHexString(b1));
         }
-        return resultsb.toString();
+        return builder.toString();
     }
 
     // 将字节转化成十六进制的字符串
@@ -53,17 +52,18 @@ public class MD5Utils {
         return hexDigits[d1] + hexDigits[d2];
     }
 
-    public static String MD5Encode(String origin, String charsetname) {
+    public static String md5Encode(String origin, String charsetname) {
         String resultString = null;
         try {
             resultString = origin;
             MessageDigest md = MessageDigest.getInstance("MD5");
-            if (charsetname == null || "".equals(charsetname))
+            if (charsetname == null || "".equals(charsetname)) {
                 resultString = byteArrayToHexString(md.digest(resultString
-                        .getBytes()));
-            else
+                        .getBytes("utf-8")));
+            } else {
                 resultString = byteArrayToHexString(md.digest(resultString
                         .getBytes(charsetname)));
+            }
         } catch (Exception exception) {
             exception.printStackTrace();
         }

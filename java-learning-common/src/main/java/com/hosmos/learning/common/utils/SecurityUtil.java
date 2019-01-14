@@ -11,14 +11,14 @@ public class SecurityUtil {
             MessageDigest messageDigest = null;
             String algorithm = isMd5 ? "MD5" : "SHA";
             messageDigest = MessageDigest.getInstance(algorithm);
-            return messageDigest.digest(content.getBytes());
+            return messageDigest.digest(content.getBytes("utf-8"));
         }
 
         public static byte[] digest1(String content, boolean isMd5) throws Exception {
             MessageDigest messageDigest = null;
             String algorithm = isMd5 ? "MD5" : "SHA";
             messageDigest = MessageDigest.getInstance(algorithm);
-            messageDigest.update(content.getBytes());
+            messageDigest.update(content.getBytes("utf-8"));
             return messageDigest.digest();
         }
     }

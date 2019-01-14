@@ -11,6 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * 权限管理实现层
+ *
+ * @author chenhuayang
+ */
 @Service
 public class PermissionServiceImpl implements PermissionService {
     private static final Logger log = LoggerFactory.getLogger("adminLogger");

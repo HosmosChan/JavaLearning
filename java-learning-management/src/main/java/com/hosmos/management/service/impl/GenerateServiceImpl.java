@@ -19,6 +19,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 代码生成实现层
+ *
+ * @author chenhuayang
+ */
 @Service
 public class GenerateServiceImpl implements GenerateService {
     @Autowired

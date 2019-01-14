@@ -5,13 +5,19 @@ import com.hosmos.management.model.Dict;
 import com.hosmos.learning.common.utils.table.PageTableHandler;
 import com.hosmos.learning.common.utils.table.PageTableRequest;
 import com.hosmos.learning.common.utils.table.PageTableResponse;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 字典管理相关接口
+ *
+ * @author chenhuayang
+ */
+@Api(tags = "字典管理")
 @RestController
 @RequestMapping("/dicts")
 public class DictController {

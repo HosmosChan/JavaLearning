@@ -19,6 +19,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * 用户管理实现层
+ *
+ * @author chenhuayang
+ */
 @Service
 public class UserServiceImpl implements UserService {
     private static final Logger log = LoggerFactory.getLogger("adminLogger");

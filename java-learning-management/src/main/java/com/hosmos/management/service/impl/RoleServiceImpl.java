@@ -14,6 +14,11 @@ import org.springframework.util.CollectionUtils;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 角色管理实现层
+ *
+ * @author chenhuayang
+ */
 @Service
 public class RoleServiceImpl implements RoleService {
     private static final Logger log = LoggerFactory.getLogger("adminLogger");
@@ -24,13 +29,15 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     public void saveRole(RoleDto roleDto) {
         Role role = roleDto;
-        if (role.getId() != null) {// 修改
+        if (role.getId() != null) {
+            // 修改
             Role r = roleDao.getRole(role.getName());
-            if (r != null && r.getId() != role.getId()) {
+            if (r != null && !r.getId().equals(role.getId())) {
                 throw new IllegalArgumentException(role.getName() + "已存在");
             }
             roleDao.update(role);
-        } else {// 新增
+        } else {
+            // 新增
             Role r = roleDao.getRole(role.getName());
             if (r != null) {
                 throw new IllegalArgumentException(role.getName() + "已存在");

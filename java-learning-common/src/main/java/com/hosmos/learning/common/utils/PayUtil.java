@@ -14,12 +14,12 @@ public class PayUtil {
      *
      * @param text          需要签名的字符串
      * @param key           密钥
-     * @param input_charset 编码格式
+     * @param inputCharset 编码格式
      * @return 签名结果
      */
-    public static String sign(String text, String key, String input_charset) {
+    public static String sign(String text, String key, String inputCharset) {
         text = text + key;
-        return DigestUtils.md5Hex(getContentBytes(text, input_charset));
+        return DigestUtils.md5Hex(getContentBytes(text, inputCharset));
     }
 
     /**
@@ -28,17 +28,13 @@ public class PayUtil {
      * @param text          需要签名的字符串
      * @param sign          签名结果
      * @param key           密钥
-     * @param input_charset 编码格式
+     * @param inputCharset 编码格式
      * @return 签名结果
      */
-    public static boolean verify(String text, String sign, String key, String input_charset) {
+    public static boolean verify(String text, String sign, String key, String inputCharset) {
         text = text + key;
-        String mysign = DigestUtils.md5Hex(getContentBytes(text, input_charset));
-        if (mysign.equals(sign)) {
-            return true;
-        } else {
-            return false;
-        }
+        String mysign = DigestUtils.md5Hex(getContentBytes(text, inputCharset));
+        return mysign.equals(sign);
     }
 
     /**
@@ -49,7 +45,11 @@ public class PayUtil {
      */
     public static byte[] getContentBytes(String content, String charset) {
         if (charset == null || "".equals(charset)) {
-            return content.getBytes();
+            try {
+                return content.getBytes("utf-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException("MD5签名过程中出现错误,指定的编码集不对,您目前未指定编码");
+            }
         }
         try {
             return content.getBytes(charset);
@@ -64,19 +64,19 @@ public class PayUtil {
      * @return
      */
     public static String createCode(int codeLength) {
-        String code = "";
+        StringBuilder code = new StringBuilder();
         for (int i = 0; i < codeLength; i++) {
-            code += (int) (Math.random() * 9);
+            code.append((int) (Math.random() * 9));
         }
-        return code;
+        return code.toString();
     }
 
     private static boolean isValidChar(char ch) {
-        if ((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
+        if ((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
             return true;
-        if ((ch >= 0x4e00 && ch <= 0x7fff) || (ch >= 0x8000 && ch <= 0x952f))
-            return true;// 简体中文汉字编码
-        return false;
+        }
+        // 简体中文汉字编码
+        return (ch >= 0x4e00 && ch <= 0x7fff) || (ch >= 0x8000 && ch <= 0x952f);
     }
 
     /**
@@ -92,8 +92,8 @@ public class PayUtil {
         }
         for (Object key : sArray.keySet()) {
             Object value = sArray.get(key);
-            if (value == null || value.equals("") || key.toString().equalsIgnoreCase("sign")
-                    || key.toString().equalsIgnoreCase("sign_type")) {
+            if (value == null || "".equals(value) || "sign".equalsIgnoreCase(key.toString())
+                    || "sign_type".equalsIgnoreCase(key.toString())) {
                 continue;
             }
             result.put(key, value);
@@ -110,17 +110,18 @@ public class PayUtil {
     public static String createLinkString(Map params) {
         List keys = new ArrayList(params.keySet());
         Collections.sort(keys);
-        String prestr = "";
+        StringBuilder prestr = new StringBuilder();
         for (int i = 0; i < keys.size(); i++) {
             String key = keys.get(i).toString();
             String value = params.get(key).toString();
-            if (i == keys.size() - 1) {// 拼接时，不包括最后一个&字符
-                prestr = prestr + key + "=" + value;
+            // 拼接时，不包括最后一个&字符
+            if (i == keys.size() - 1) {
+                prestr.append(key).append("=").append(value);
             } else {
-                prestr = prestr + key + "=" + value + "&";
+                prestr.append(key).append("=").append(value).append("&");
             }
         }
-        return prestr;
+        return prestr.toString();
     }
 
     /**
@@ -130,7 +131,7 @@ public class PayUtil {
      */
     public static String httpRequest(String requestUrl, String requestMethod, String outputStr, String encoding) {
         // 创建SSLContext
-        StringBuffer buffer = null;
+        StringBuilder builder = null;
         try {
             URL url = new URL(requestUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -148,19 +149,18 @@ public class PayUtil {
             InputStream is = conn.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, encoding);
             BufferedReader br = new BufferedReader(isr);
-            buffer = new StringBuffer();
+            builder = new StringBuilder();
             String line = null;
             while ((line = br.readLine()) != null) {
-                buffer.append(line);
+                builder.append(line);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            return buffer.toString();
-        } catch (NullPointerException ne) {
+        if (builder == null) {
             throw new NullPointerException("服务端返回空");
         }
+        return builder.toString();
     }
 
     public static String urlEncodeUTF8(String source) {
@@ -175,7 +175,7 @@ public class PayUtil {
     }
 
     //生成随机字符串
-    public static String getNonce_str() {
+    public static String getNonceStr() {
         String base = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
@@ -189,23 +189,12 @@ public class PayUtil {
     public static synchronized String createOrderNo() {
         String today = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String code = createCode(8);
-        String out_trade_no = today + code;//商户订单号
-        return out_trade_no;
+        return today + code;
     }
 
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("<?xml version=\"1.0\" encoding=\"GB18030\" ?>");
-        sb.append("<Root>");
-        sb.append("<Head>");
-        sb.append("sdfsadf");
-        sb.append("</Head>");
-        sb.append("<Req>");
-        sb.append("sdfsadfsadf");
-        sb.append("</Req>");
-        sb.append("</Root>");
-        String str = httpRequest("http://localhost:8080/ccb/usps/signcontract", "POST", sb.toString(), "UTF-8");
+        String sb = "<?xml version=\"1.0\" encoding=\"GB18030\" ?><Root><Head>sdfsadf</Head><Req>sdfsadfsadf</Req></Root>";
+        String str = httpRequest("http://localhost:8080/ccb/usps/signcontract", "POST", sb, "UTF-8");
         System.out.println(str);
         //return sb.toString();
     }

@@ -14,6 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * swagger文档
+ *
+ * @author chenhuayang
  */
 @Configuration
 @EnableSwagger2
@@ -21,7 +23,8 @@ public class SwaggerConfig {
     @Bean
     public Docket docket() {
         ParameterBuilder builder = new ParameterBuilder();
-        builder.parameterType("header").name("login-token").description("restful方式的header参数").required(false).modelRef(new ModelRef("string")); // 在swagger里显示header
+        // 在swagger里显示header
+        builder.parameterType("header").name("login-token").description("restful方式的header参数").required(false).modelRef(new ModelRef("string"));
         return new Docket(DocumentationType.SWAGGER_2).groupName("swagger接口文档").apiInfo(new ApiInfoBuilder().title("swagger接口文档").contact(new Contact("Hosmos", "", "")).version("1.0").build()).globalOperationParameters(Lists.newArrayList(builder.build())).select().paths(PathSelectors.any()).build();
     }
 }

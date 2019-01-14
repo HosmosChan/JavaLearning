@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 字典管理实现层
+ *
+ * @author chenhuayang
+ */
 @Service
 public class DictServiceImpl implements DictService {
     @Autowired

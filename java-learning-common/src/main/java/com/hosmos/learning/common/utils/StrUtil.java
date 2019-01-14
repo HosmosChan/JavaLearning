@@ -15,7 +15,7 @@ public class StrUtil {
      * @return
      */
     public static String str2hump(String str) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (str != null && str.length() > 0) {
             if (str.contains("_")) {
                 String[] chars = str.split("_");
@@ -29,20 +29,20 @@ public class StrUtil {
                     }
                     size = list.size();
                     if (size > 0) {
-                        buffer.append(list.get(0));
+                        builder.append(list.get(0));
                         for (int i = 1; i < size; i++) {
                             String s = list.get(i);
-                            buffer.append(s.substring(0, 1).toUpperCase());
+                            builder.append(s.substring(0, 1).toUpperCase());
                             if (s.length() > 1) {
-                                buffer.append(s.substring(1));
+                                builder.append(s.substring(1));
                             }
                         }
                     }
                 }
             } else {
-                buffer.append(str);
+                builder.append(str);
             }
         }
-        return buffer.toString();
+        return builder.toString();
     }
 }

@@ -142,22 +142,31 @@ public class SimpleDemo {
         List<Integer> numsWithoutNull1 = nums.stream().filter(num -> num != null).collect(Collectors.toList());
         List<Integer> ints = creatArrayIntList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         System.out.print("\nReduce：\n");
-        System.out.println("ints sum is:" + ints.stream().reduce((sum, item) -> sum + item).get());//求和
-        System.out.println("ints sum is:" + ints.stream().reduce(0, (sum, item) -> sum + item));//求和
-        System.out.println("ints count is:" + ints.stream().count());//计数
-        System.out.println(ints.stream().allMatch(num -> num%2 == 0));//是否所有元素都满足条件
-        System.out.println(ints.stream().anyMatch(num -> num%2 == 0));//是否存在某一个元素满足条件
-        System.out.println(ints.stream().noneMatch(num -> num%2 == 0));//是否所有元素都不满足条件
-        System.out.println(ints.stream().findFirst());//返回Stream中的第一个元素，如果Stream为空，返回空Optional
-        System.out.println(ints.stream().findFirst().get());//返回Stream中的第一个元素，如果Stream为空，返回空Optional
+        //求和
+        System.out.println("ints sum is:" + ints.stream().reduce((sum, item) -> sum + item).get());
+        //求和
+        System.out.println("ints sum is:" + ints.stream().reduce(0, (sum, item) -> sum + item));
+        //计数
+        System.out.println("ints count is:" + ints.stream().count());
+        //是否所有元素都满足条件
+        System.out.println(ints.stream().allMatch(num -> num%2 == 0));
+        //是否存在某一个元素满足条件
+        System.out.println(ints.stream().anyMatch(num -> num%2 == 0));
+        //是否所有元素都不满足条件
+        System.out.println(ints.stream().noneMatch(num -> num%2 == 0));
+        //返回Stream中的第一个元素，如果Stream为空，返回空Optional
+        System.out.println(ints.stream().findFirst());
+        //返回Stream中的第一个元素，如果Stream为空，返回空Optional
+        System.out.println(ints.stream().findFirst().get());
         ints.stream().max((o1, o2) -> o1.compareTo(o2)).ifPresent(System.out::println);
         System.out.println(ints.stream().min((o1, o2) -> o1.compareTo(o2)).get());
     }
 
     public static List creatArrayIntList(Object... key) {
         try {
-            if (Test.isEmpty(key))
+            if (Test.isEmpty(key)) {
                 return null;
+            }
             List nums = Arrays.asList(key);
             return nums;
         } catch (Exception e) {

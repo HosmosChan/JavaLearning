@@ -17,6 +17,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 日志实现层
+ *
+ * @author chenhuayang
+ */
 @Service
 public class SysLogServiceImpl implements SysLogService {
     private static final Logger log = LoggerFactory.getLogger("adminLogger");

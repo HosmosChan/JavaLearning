@@ -20,6 +20,8 @@ import javax.servlet.ServletResponse;
  * 退出<br>
  * web退出和restful方式退出<br>
  * 后者会删除缓存的token
+ *
+ * @author chenhuayang
  */
 public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter {
     private static final Logger log = LoggerFactory.getLogger("adminLogger");
@@ -28,7 +30,8 @@ public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
         String loginToken = RestfulFilter.getToken(request);
         User user = UserUtil.getCurrentUser();
-        if (StringUtils.isBlank(loginToken)) {// 非Restful方式
+        // 非Restful方式
+        if (StringUtils.isBlank(loginToken)) {
             boolean flag = super.preHandle(request, response);
             log.debug("{}退出成功", user.getUsername());
             SpringUtil.getBean(SysLogService.class).save(user.getId(), "退出", true, null);

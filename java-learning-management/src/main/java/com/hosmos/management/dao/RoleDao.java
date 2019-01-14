@@ -6,6 +6,11 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 角色管理Dao层
+ *
+ * @author chenhuayang
+ */
 @Mapper
 public interface RoleDao {
     @Select("select * from sys_role where name = #{name}")
@@ -21,7 +26,7 @@ public interface RoleDao {
     @Delete("delete from sys_role_permission where roleId = #{roleId}")
     void deleteRolePermission(Long roleId);
 
-    void saveRolePermission(Long roleId, List<Long> permissionIds);
+    void saveRolePermission(@Param("roleId") Long roleId, @Param("permissionIds") List<Long> permissionIds);
 
     @Delete("delete from sys_user_role where roleId = #{roleId}")
     void deleteRoleUser(Long roleId);
@@ -32,9 +37,9 @@ public interface RoleDao {
     @Select("select * from sys_role r inner join sys_user_role ru on r.id = ru.roleId where ru.userId = #{userId}")
     List<Role> listByUserId(Long userId);
 
-    int count(Map<String, Object> params);
+    int count(@Param("params") Map<String, Object> params);
 
-    List<Role> list(Map<String, Object> params, Integer offset, Integer limit);
+    List<Role> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
 
     @Select("select * from sys_role where id = #{id}")
     Role getById(Long id);

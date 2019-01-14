@@ -8,8 +8,7 @@ import com.hosmos.management.model.User;
 import com.hosmos.management.service.PermissionService;
 import com.hosmos.management.utils.UserUtil;
 import com.google.common.collect.Lists;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * 权限相关接口
+ * 权限管理相关接口
+ *
+ * @author chenhuayang
  */
-@Api(tags = "权限")
+@Api(tags = "权限管理")
 @RestController
 @RequestMapping("/permissions")
 public class PermissionController {
