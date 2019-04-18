@@ -18,12 +18,14 @@ public interface RoleService {
      * @param roleDto 角色信息
      */
     void saveRole(RoleDto roleDto);
+
     /**
      * 通过角色id删除角色信息
      *
      * @param id 角色id
      */
     void deleteRole(Long id);
+
     /**
      * 通过搜索参数获取角色信息列表个数，用于list方法中进行页码计数
      *
@@ -31,6 +33,7 @@ public interface RoleService {
      * @return int 角色信息列表个数
      */
     int count(Map<String, Object> params);
+
     /**
      * 通过搜索参数获取角色信息列表
      *
@@ -41,7 +44,19 @@ public interface RoleService {
      */
     List<Role> list(Map<String, Object> params, Integer offset, Integer limit);
 
+    /**
+     * 通过角色id获取角色信息
+     *
+     * @param id 角色id
+     * @return Role 一条角色信息
+     */
     Role getById(Long id);
 
+    /**
+     * 通过用户id获取角色信息列表
+     *
+     * @param userId 用户id
+     * @return List<Role> 角色信息列表
+     */
     List<Role> listByUserId(Long userId);
 }

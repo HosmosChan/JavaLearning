@@ -40,8 +40,11 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/**", "authc");
+        //未登录状态页面开启重定向url
         shiroFilterFactoryBean.setLoginUrl("/login.html");
+        //已登录状态页面开启重定向url
         shiroFilterFactoryBean.setSuccessUrl("/index.html");
+        //登出状态页面开启重定向url
         LogoutFilter logoutFilter = new LogoutFilter();
         logoutFilter.setRedirectUrl("/login.html");
         RestfulFilter restfulFilter = new RestfulFilter();

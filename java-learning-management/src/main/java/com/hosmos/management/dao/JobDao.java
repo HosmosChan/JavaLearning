@@ -13,16 +13,16 @@ import java.util.Map;
  */
 @Mapper
 public interface JobDao {
-    @Select("select * from t_job where jobName = #{jobName}")
+    @Select("select * from sys_job where jobName = #{jobName}")
     JobModel getByName(String jobName);
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into t_job(jobName, description, cron, springBeanName, methodName, isSysJob, status, createTime, gmtTime) values(#{jobName}, #{description}, #{cron}, #{springBeanName}, #{methodName}, #{isSysJob}, 1, now(), now())")
+    @Insert("insert into sys_job(jobName, description, cron, springBeanName, methodName, isSysJob, status, createTime, gmtTime) values(#{jobName}, #{description}, #{cron}, #{springBeanName}, #{methodName}, #{isSysJob}, 1, now(), now())")
     void save(JobModel jobModel);
 
     void update(@Param("jobModel") JobModel jobModel);
 
-    @Select("select * from t_job where id = #{id}")
+    @Select("select * from sys_job where id = #{id}")
     JobModel getById(Long id);
 
     int count(@Param("params") Map<String, Object> params);

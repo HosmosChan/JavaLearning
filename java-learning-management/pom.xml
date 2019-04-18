@@ -16,6 +16,11 @@
             <artifactId>java.learning.common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>4.2.0.RELEASE</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>management</finalName>

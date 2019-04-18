@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>字典列表</title>
+    <title>日志列表</title>
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
@@ -18,19 +18,22 @@
                             <td>
                                 <form class="form-inline" onsubmit="return false">
                                     <div class="form-group">
-                                        <label for="type">type：</label>
-                                        <input id="type" type="text" class="form-control" placeholder="type">
-                                        <button id="searchBt" class="layui-btn layui-btn-sm" permission="dict:query"><i
-                                                class="layui-icon">&#xe615;</i>搜索
+                                        <label for="nickName">昵称：</label>
+                                        <input id="nickName" type="text" class="form-control" placeholder="昵称">
+                                        <label for="beginTime">时间：</label>
+                                        <input type="text" class="form-control" placeholder="开始时间" id="beginTime">
+                                        <input type="text" class="form-control" placeholder="结束时间" id="endTime">
+                                        <label for="flag">状态：</label>
+                                        <select class="form-control input-sm" id="flag">
+                                            <option value="">全部</option>
+                                            <option value="1">成功</option>
+                                            <option value="0">失败</option>
+                                        </select>
+                                        <button id="searchBt" class="layui-btn layui-btn-sm" permission="sys:log:query">
+                                            <i class="layui-icon">&#xe615;</i>搜索
                                         </button>
                                     </div>
                                 </form>
-                            </td>
-                            <td align="right">
-                                <button class="layui-btn layui-btn-sm" onclick="location.href='addDict.html'"
-                                        permission="dict:add">
-                                    <i class="layui-icon">&#xe608;</i> 添加
-                                </button>
                             </td>
                         </tr>
                     </table>
@@ -43,13 +46,12 @@
                         <tr>
                         </tr>
                         <tr>
-                            <th>id</th>
-                            <th>type</th>
-                            <th>k</th>
-                            <th>val</th>
-                            <th>createTime</th>
-                            <th>gmtTime</th>
-                            <th>操作</th>
+                            <th width="5%">id</th>
+                            <th width="15%">昵称</th>
+                            <th width="20%">模块</th>
+                            <th width="5%">状态</th>
+                            <th>备注</th>
+                            <th width="15%">时间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -64,12 +66,22 @@
 </html>
 <script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="../../js/plugin/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="../../js/my/permission.js"></script>
 <script type="text/javascript">
     var pers = checkPermission();
+    layui.use(['layer', 'laydate'], function () {
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#beginTime'
+        });
+        laydate.render({
+            elem: '#endTime'
+        });
+    });
     var example;
 
     function init() {
@@ -82,55 +94,45 @@
                     "url": "/js/plugin/datatables/Chinese.lang"
                 },
                 "ajax": {
-                    "url": "/dicts",
+                    "url": "/logs",
                     "type": "get",
                     "data": function (d) {
-                        d.type = $("#type").val();
+                        d.flag = $('#flag').val();
+                        d.nickName = $('#nickName').val();
+                        d.beginTime = $('#beginTime').val();
+                        d.endTime = $('#endTime').val();
+                    },
+                    "error": function (xhr, textStatus, errorThrown) {
+                        var msg = xhr.responseText;
+                        console.log(msg)
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",
                 "columns": [
                     {"data": "id", "defaultContent": ""},
-                    {"data": "type", "defaultContent": ""},
-                    {"data": "k", "defaultContent": ""},
-                    {"data": "val", "defaultContent": ""},
-                    {"data": "createTime", "defaultContent": ""},
-                    {"data": "gmtTime", "defaultContent": ""},
                     {
-                        "data": "",
+                        "data": "user",
                         "defaultContent": "",
                         "orderable": false,
                         "render": function (data, type, row) {
-                            var id = row['id'];
-                            var href = "updateDict.html?id=" + id;
-                            var edit = buttonEdit(href, "dict:add", pers);
-                            var del = buttonDel(id, "dict:del", pers);
-                            return edit + del;
+                            var user = row['user'];
+                            return user['nickName'];
                         }
-                    }
+                    },
+                    {"data": "module", "defaultContent": ""},
+                    {
+                        "data": "flag",
+                        "defaultContent": "",
+                        "render": function (data, type, row) {
+                            var flag = row['flag'];
+                            return flag ? "成功" : "失败";
+                        }
+                    },
+                    {"data": "remark", "defaultContent": ""},
+                    {"data": "createTime", "defaultContent": ""}
                 ],
-                "order": [[0, "asc"]]
+                "order": [[5, "desc"]]
             });
-    }
-
-    layui.use('layer', function () {
-        var layer = layui.layer;
-    });
-
-    function del(id) {
-        layer.confirm('确定要删除吗？', {
-            btn: ['确定', '取消']
-        }, function () {
-            $.ajax({
-                type: 'delete',
-                url: '/dicts/' + id,
-                success: function (data) {
-                    example.ajax.reload();
-                    layer.msg("删除成功");
-                }
-            });
-            layer.close(1);
-        });
     }
 
     $("#searchBt").click(function () {
