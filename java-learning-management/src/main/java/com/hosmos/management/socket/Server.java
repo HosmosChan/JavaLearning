@@ -56,7 +56,7 @@ public class Server {
                         String[] demoArray = demo.split("/:");
                         String socketIp = demoArray[0];
                         String info = demoArray[1];
-
+                        //本地输入127.0.0.1/:123
                         System.out.println("服务端输入的ip：" + socketIp);
                         System.out.println("服务端发送的消息:" + info);
                         Socket socket = (Socket) socketMap.get(socketIp);
