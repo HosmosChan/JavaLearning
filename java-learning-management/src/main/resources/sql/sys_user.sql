@@ -27,7 +27,7 @@ CREATE TABLE `sys_user` (
   `nickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '用户昵称',
   `headImgUrl` varchar(255) DEFAULT NULL COMMENT '用户头像Url',
   `phone` varchar(11) DEFAULT NULL COMMENT '用户电话',
-  `telephone` varchar(30) DEFAULT NULL COMMENT '用户手机',
+  `telephone` varchar(11) DEFAULT NULL COMMENT '用户手机',
   `email` varchar(50) DEFAULT NULL COMMENT '用户Email',
   `birthday` date DEFAULT NULL COMMENT '用户生日',
   `sex` tinyint(1) DEFAULT NULL COMMENT '用户性别',
