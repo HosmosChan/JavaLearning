@@ -24,7 +24,3 @@ CREATE TABLE `t_role_permission` (
   `permissionId` int(11) NOT NULL COMMENT '权限id',
   PRIMARY KEY (`roleId`,`permissionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色权限表';
-
--- ----------------------------
--- Records of t_role_permission
--- ----------------------------

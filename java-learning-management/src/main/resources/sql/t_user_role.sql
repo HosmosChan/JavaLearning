@@ -26,7 +26,3 @@ CREATE TABLE `t_user_role` (
   KEY `index_userId` (`userId`),
   KEY `index_roleId` (`roleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色表';
-
--- ----------------------------
--- Records of t_user_role
--- ----------------------------

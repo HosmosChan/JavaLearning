@@ -27,7 +27,3 @@ CREATE TABLE `t_role` (
   `gmtTime` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色列表';
-
--- ----------------------------
--- Records of t_role
--- ----------------------------

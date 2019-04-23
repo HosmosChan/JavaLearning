@@ -29,7 +29,3 @@ CREATE TABLE `t_point` (
   KEY `index_userId` (`userId`),
   KEY `index_createTime` (`createTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='积分表';
-
--- ----------------------------
--- Records of t_point
--- ----------------------------
