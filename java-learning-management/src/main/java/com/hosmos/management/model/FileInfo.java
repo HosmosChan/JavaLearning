@@ -34,8 +34,6 @@ public class FileInfo extends BaseEntity<String> {
     private String path;
     private String url;
     private Integer type;
-    private Date createTime;
-    private Date gmtTime;
 
     public String getContentType() {
         return contentType;
@@ -75,25 +73,5 @@ public class FileInfo extends BaseEntity<String> {
 
     public void setType(Integer type) {
         this.type = type;
-    }
-
-    @Override
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    @Override
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Override
-    public Date getGmtTime() {
-        return gmtTime;
-    }
-
-    @Override
-    public void setGmtTime(Date gmtTime) {
-        this.gmtTime = gmtTime;
     }
 }
