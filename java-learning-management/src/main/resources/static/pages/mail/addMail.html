@@ -57,7 +57,7 @@
 		  layedit = layui.layedit;
 		  layedit.set({
               uploadImage: {
-                url: '/files/layui?domain=' + domain,
+                url: '/files/layui?usage=mail(' + $("#subject").val() + ')&domain=' + domain,
                 type: 'post'
               }
             });

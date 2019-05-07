@@ -32,8 +32,8 @@ public class FileController {
     @LogAnnotation
     @PostMapping
     @ApiOperation(value = "文件上传")
-    public FileInfo uploadFile(MultipartFile file) throws IOException {
-        return fileService.save(file);
+    public FileInfo uploadFile(MultipartFile file, String usage) throws IOException {
+        return fileService.save(file, usage);
     }
 
     /**
@@ -47,8 +47,8 @@ public class FileController {
     @LogAnnotation
     @PostMapping("/layui")
     @ApiOperation(value = "layui富文本文件自定义上传")
-    public LayuiFile uploadLayuiFile(MultipartFile file, String domain) throws IOException {
-        FileInfo fileInfo = fileService.save(file);
+    public LayuiFile uploadLayuiFile(MultipartFile file, String domain, String usage) throws IOException {
+        FileInfo fileInfo = fileService.save(file, usage);
 
         LayuiFile layuiFile = new LayuiFile();
         layuiFile.setCode(0);

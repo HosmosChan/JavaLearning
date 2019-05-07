@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class FileServiceImpl implements FileService {
     private FileInfoDao fileInfoDao;
 
     @Override
-    public FileInfo save(MultipartFile file) throws IOException {
+    public FileInfo save(MultipartFile file, String usage) throws IOException {
         String fileOrigName = file.getOriginalFilename();
         if (!fileOrigName.contains(".")) {
             throw new IllegalArgumentException("缺少后缀名");
@@ -56,6 +57,13 @@ public class FileServiceImpl implements FileService {
         String md5 = FileUtil.fileMd5(file.getInputStream());
         FileInfo fileInfo = fileInfoDao.getById(md5);
         if (fileInfo != null) {
+            if (usage != null) {
+                if (StringUtils.isEmpty(fileInfo.getUsage())) {
+                    fileInfo.setUsage(usage);
+                } else if (!fileInfo.getUsage().contains(usage)) {
+                    fileInfo.setUsage(fileInfo.getUsage() + "," + usage);
+                }
+            }
             fileInfoDao.update(fileInfo);
             return fileInfo;
         }

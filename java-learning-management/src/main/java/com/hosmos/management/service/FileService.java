@@ -30,7 +30,7 @@ import java.io.IOException;
  * @date 2019年05月07日
  */
 public interface FileService {
-    FileInfo save(MultipartFile file) throws IOException;
+    FileInfo save(MultipartFile file, String usage) throws IOException;
 
     void delete(String id);
 }

@@ -38,7 +38,7 @@ public interface FileInfoDao {
     @Insert("insert into file_info(id, contentType, size, path, url, type, createTime, gmtTime) values(#{id}, #{contentType}, #{size}, #{path}, #{url}, #{type}, now(), now())")
     int save(FileInfo fileInfo);
 
-    @Update("update file_info t set t.gmtTime = now() where t.id = #{id}")
+    @Update("update file_info t set t.gmtTime = now(), t.`usage` = #{usage} where t.id = #{id}")
     int update(FileInfo fileInfo);
 
     @Delete("delete from file_info where id = #{id}")
