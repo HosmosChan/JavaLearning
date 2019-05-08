@@ -20,6 +20,7 @@ public class User extends BaseEntity<Long> {
     private Date birthday;
     private Integer sex;
     private Integer status;
+    private Date lastLoginTime;
 
     public String getUsername() {
         return username;
@@ -107,6 +108,14 @@ public class User extends BaseEntity<Long> {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 
     public interface Status {

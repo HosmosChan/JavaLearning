@@ -2,8 +2,10 @@ package com.hosmos.management.advice;
 
 
 import com.hosmos.management.annotation.LogAnnotation;
+import com.hosmos.management.dao.UserDao;
 import com.hosmos.management.model.SysLogs;
 import com.hosmos.management.service.SysLogService;
+import com.hosmos.management.utils.UserUtil;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -23,6 +25,8 @@ import org.springframework.util.StringUtils;
 public class LogAdvice {
     @Autowired
     private SysLogService logService;
+    @Autowired
+    private UserDao userDao;
 
     @Around(value = "@annotation(com.hosmos.management.annotation.LogAnnotation)")
     public Object logSave(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -45,6 +49,9 @@ public class LogAdvice {
             Object object = joinPoint.proceed();
             sysLogs.setFlag(true);
             logService.save(sysLogs);
+            if (module.contains("登陆")) {
+                userDao.lastLogin(UserUtil.getCurrentUser().getUsername());
+            }
             return object;
         } catch (Exception e) {
             sysLogs.setFlag(false);

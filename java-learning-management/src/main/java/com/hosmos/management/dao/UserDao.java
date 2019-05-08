@@ -36,4 +36,6 @@ public interface UserDao {
     Integer count(@Param("params") Map<String, Object> params);
 
     List<User> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
+
+    void lastLogin(String username);
 }

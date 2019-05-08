@@ -64,4 +64,11 @@
         </set>
         where id = #{user.id}
     </update>
+    <update id="lastLogin">
+        update sys_user
+        <set>
+            lastLoginTime = now()
+        </set>
+        where username = #{username}
+    </update>
 </mapper>

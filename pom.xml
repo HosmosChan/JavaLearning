@@ -16,6 +16,7 @@
         <module>java-learning-common</module>
         <module>java-learning-management</module>
         <module>java-learning-activeMQ</module>
+        <module>java-learning-reportForm</module>
     </modules>
     <dependencies>
         <dependency>
