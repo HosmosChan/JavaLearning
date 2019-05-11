@@ -10,8 +10,4 @@ CREATE TABLE `qrtz_blob_triggers` (
   `TRIGGER_GROUP` varchar(64) NOT NULL,
   `BLOB_DATA` blob,
   PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of qrtz_blob_triggers
--- ----------------------------
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

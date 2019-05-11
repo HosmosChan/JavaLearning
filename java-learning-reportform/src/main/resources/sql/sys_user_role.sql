@@ -10,7 +10,7 @@ CREATE TABLE `sys_user_role` (
   PRIMARY KEY (`userId`,`roleId`),
   KEY `index_userId` (`userId`),
   KEY `index_roleId` (`roleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户角色表';
 
 -- ----------------------------
 -- Records of sys_user_role

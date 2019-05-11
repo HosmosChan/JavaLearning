@@ -14,7 +14,7 @@ CREATE TABLE `sys_logs` (
   PRIMARY KEY (`id`),
   KEY `index_userId` (`userId`),
   KEY `index_createTime` (`createTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
 
 CREATE TRIGGER `auto_insert_reportform_management_logs` AFTER INSERT ON `sys_logs` FOR EACH ROW begin
 insert into reportform.management_logs select * from management.sys_logs where id=new.id;

@@ -16,8 +16,4 @@ CREATE TABLE `qrtz_job_details` (
   `REQUESTS_RECOVERY` varchar(1) NOT NULL,
   `JOB_DATA` blob,
   PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of qrtz_job_details
--- ----------------------------
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

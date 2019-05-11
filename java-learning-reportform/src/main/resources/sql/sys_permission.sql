@@ -7,15 +7,15 @@ DROP TABLE IF EXISTS `sys_permission`;
 CREATE TABLE `sys_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `parentId` int(11) NOT NULL COMMENT '父类id',
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单名',
-  `css` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '图标编号',
-  `href` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '地址',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '菜单名',
+  `css` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '图标编号',
+  `href` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '地址',
   `type` tinyint(1) NOT NULL COMMENT '类型',
-  `permission` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '权限',
+  `permission` varchar(50) CHARACTER SET utf8mb4mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '权限',
   `sort` int(11) NOT NULL COMMENT '队列顺序',
   PRIMARY KEY (`id`),
   KEY `index_parentId` (`parentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='菜单管理表';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COMMENT='菜单管理表';
 
 -- ----------------------------
 -- Records of sys_permission

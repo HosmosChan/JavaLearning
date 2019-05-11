@@ -11,7 +11,7 @@ CREATE TABLE `sys_role` (
   `createTime` datetime NOT NULL COMMENT '创建时间',
   `gmtTime` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色列表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='角色列表';
 
 -- ----------------------------
 -- Records of sys_role

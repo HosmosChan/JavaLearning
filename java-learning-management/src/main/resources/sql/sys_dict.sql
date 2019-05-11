@@ -13,7 +13,7 @@ CREATE TABLE `sys_dict` (
   `gmtTime` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_type` (`type`,`k`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='下拉列表键值表';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COMMENT='下拉列表键值表';
 
 -- ----------------------------
 -- Records of sys_dict

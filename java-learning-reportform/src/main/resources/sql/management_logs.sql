@@ -14,4 +14,4 @@ CREATE TABLE `management_logs` (
   PRIMARY KEY (`id`),
   KEY `index_userId` (`userId`),
   KEY `index_createTime` (`createTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='后台管理系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COMMENT='后台管理系统日志';

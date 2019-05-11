@@ -9,8 +9,4 @@ CREATE TABLE `qrtz_calendars` (
   `CALENDAR_NAME` varchar(128) NOT NULL,
   `CALENDAR` blob NOT NULL,
   PRIMARY KEY (`SCHED_NAME`,`CALENDAR_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of qrtz_calendars
--- ----------------------------
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

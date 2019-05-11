@@ -6,10 +6,10 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户登录名',
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户登录名',
   `password` varchar(32) NOT NULL COMMENT '用户密码',
-  `salt` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码签名密钥',
-  `nickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '用户昵称',
+  `salt` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码签名密钥',
+  `nickName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户昵称',
   `headImgUrl` varchar(255) DEFAULT NULL COMMENT '用户头像Url',
   `phone` varchar(11) DEFAULT NULL COMMENT '用户电话',
   `telephone` varchar(11) DEFAULT NULL COMMENT '用户手机',
@@ -25,7 +25,7 @@ CREATE TABLE `sys_user` (
   KEY `index_status` (`status`),
   KEY `index_lastLoginTime` (`lastLoginTime`),
   KEY `index_gmtTime` (`gmtTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户列表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户列表';
 
 -- ----------------------------
 -- Records of sys_user

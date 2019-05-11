@@ -14,4 +14,4 @@ CREATE TABLE `t_mail_to` (
   KEY `index_mailId` (`mailId`),
   KEY `index_toUser` (`toUser`)
   KEY `index_createTime` (`createTime`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮件接收表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='邮件接收表';

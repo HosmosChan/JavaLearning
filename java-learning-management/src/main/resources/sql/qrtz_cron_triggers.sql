@@ -11,8 +11,4 @@ CREATE TABLE `qrtz_cron_triggers` (
   `CRON_EXPRESSION` varchar(64) NOT NULL,
   `TIME_ZONE_ID` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of qrtz_cron_triggers
--- ----------------------------
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

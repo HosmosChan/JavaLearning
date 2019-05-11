@@ -13,4 +13,4 @@ CREATE TABLE `t_point` (
   PRIMARY KEY (`id`),
   KEY `index_userId` (`userId`),
   KEY `index_createTime` (`createTime`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='积分表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='积分表';
